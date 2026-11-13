@@ -315,8 +315,36 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     .credential h3 { margin-bottom: .3rem; }
     .credential p { color: var(--muted); font-size: .9rem; }
     .credential a { display: inline-block; margin-top: .5rem; font-size: .88rem; font-weight: 700; }
-    .credential .certificate-image { display: block; margin-top: .85rem; }
-    .certificate-image img { display: block; width: min(100%, 15rem); border: 1px solid var(--line); border-radius: .2rem; }
+    .credential .certificate-link { margin-top: .65rem; }
+    .certificate-dialog {
+      width: min(52rem, calc(100% - 2rem));
+      max-height: calc(100% - 2rem);
+      max-height: calc(100dvh - 2rem);
+      padding: 0;
+      overflow: auto;
+      border: 1px solid var(--line);
+      border-radius: .55rem;
+      background: var(--white);
+      color: var(--ink);
+    }
+    .certificate-dialog::backdrop { background: #291f26c7; }
+    .certificate-panel { padding: clamp(1rem, 3vw, 1.75rem); }
+    .certificate-header { display: flex; align-items: flex-start; justify-content: space-between; gap: .75rem; }
+    .certificate-header h2 { align-self: center; font: 700 clamp(1rem, 2.5vw, 1.35rem)/1.3 var(--sans); letter-spacing: 0; }
+    .certificate-header form { margin: 0; }
+    .certificate-preview { margin-top: 1rem; }
+    .certificate-preview img {
+      display: block;
+      width: auto;
+      max-height: 72vh;
+      max-height: 72dvh;
+      margin-inline: auto;
+      border: 1px solid var(--line);
+      border-radius: .2rem;
+      object-fit: contain;
+    }
+    .certificate-preview img[hidden] { display: none; }
+    .certificate-status { color: var(--muted); font-size: .92rem; }
     .credential.patent { background: var(--blush); border-color: #d8bfc7; }
     .credential .eyebrow { margin-bottom: .35rem; color: var(--accent); font-size: .69rem; }
     .education { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
@@ -361,7 +389,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     @media print {
       @page { margin: 13mm; }
       html, body { background: #fff; color: #171417; font-size: 10pt; }
-      .topbar, .skip, .actions, .profile-card, .back-top, .certificate-image { display: none !important; }
+      .topbar, .skip, .actions, .profile-card, .back-top, .certificate-link, .certificate-dialog { display: none !important; }
       .shell { width: 100%; }
       .hero, .section, .footer { display: block; padding-block: .85rem; }
       h1 { font-size: 38pt; margin: .35rem 0 .4rem; }
@@ -411,6 +439,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <div class="actions">
           <a class="button primary" href="mailto:navarronech@gmail.com">Email me <span class="arrow" aria-hidden="true"></span></a>
           <a class="button" href="https://www.linkedin.com/in/nechelle-navarro-209674120/">LinkedIn <span class="arrow" aria-hidden="true"></span></a>
+          <a class="button" href="https://github.com/nechnavarro/navarro-nechelle.github.io">GitHub repository <span class="arrow" aria-hidden="true"></span></a>
           <button class="button" type="button" id="print-resume" hidden>Print / Save PDF</button>
         </div>
       </div>
@@ -444,13 +473,18 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
             <h3>Chief Systems Engineer</h3>
             <p class="employer">GC Co., Ltd. · Client assignment with NTT DATA Group Corporation</p>
             <ul>
-              <li>Developed and maintained Java and Spring Boot healthcare web applications, designed APIs and backend services, and implemented client-requested enhancements.</li>
-              <li>Traced defects in application code and legacy Excel VBA macros, implemented fixes, and tested changes with JUnit, Mockito, and Spring Boot testing tools.</li>
-              <li>Managed source code in Git and coordinated production releases with Jenkins, including AWS deployments.</li>
-              <li>Worked directly with Japanese colleagues on changes, test findings, and releases. Maintained Japanese-language technical documentation with AI-assisted translation when needed.</li>
-              <li>Used GitHub Copilot for coding and troubleshooting and completed NTT DATA’s hands-on Python application development training.</li>
+              <li>Developed and maintained Java and Spring Boot web applications for healthcare services. Implemented enhancements based on client requirements.</li>
+              <li>Designed and implemented APIs and backend services for enterprise applications.</li>
+              <li>Investigated application defects by reviewing existing code and tracing behavior, then implemented and tested fixes.</li>
+              <li>Wrote and ran unit tests with JUnit and Mockito and tested application changes using Spring Boot testing tools.</li>
+              <li>Developed and maintained legacy Excel VBA applications and macros. Read through existing business logic to identify the source of defects and correct macro behavior.</li>
+              <li>Managed source code with Git and production releases with Jenkins, including deployment activities in AWS environments.</li>
+              <li>Created, reviewed, and updated Japanese-language technical documentation and project materials. Used AI-assisted translation to work through more complex technical content.</li>
+              <li>Worked directly with Japanese colleagues on application changes, test findings, technical issues, and release activities. Used conversational Japanese for day-to-day communication.</li>
+              <li>Used GitHub Copilot to assist with coding and troubleshooting and reviewed its suggestions before applying them.</li>
+              <li>Completed NTT DATA training in Python application development, including hands-on desktop application exercises.</li>
             </ul>
-            <p class="stack"><strong>Technologies</strong> Java, Spring Boot, Go, React, TypeScript, Node.js, Excel VBA, Hibernate, PostgreSQL, DynamoDB, JUnit, Mockito, Git, Jenkins, AWS, GitHub Copilot, SonarQube, Docker</p>
+            <p class="stack"><strong>Technologies</strong> Java, Spring Boot, Go (Golang), React, TypeScript, Node.js, Excel VBA, Hibernate, PostgreSQL, DynamoDB, JUnit, Mockito, Git, Jenkins, AWS, GitHub Copilot, SonarQube, Docker</p>
           </div>
         </li>
         <li class="job">
@@ -459,12 +493,17 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
             <h3>Senior Application Systems Engineer / Consultant</h3>
             <p class="employer">Fujitsu · Weserv Systems International, Inc.</p>
             <ul>
-              <li>Led enterprise web and backend projects from design and implementation through testing, deployment, and production support. Designed APIs and backend services.</li>
-              <li>Coordinated requirements, progress, and issue resolution with Japanese counterparts. Investigated production incidents and implemented fixes.</li>
-              <li>Customized a Manufacturing Execution System, fixed PDF printing in a receivable-remittance system, and resolved support tickets involving voucher and points transactions.</li>
-              <li>Prepared technical specifications, user manuals, and project reports. Supported invoice processing and followed up on quotations.</li>
+              <li>Served as technical lead for enterprise web and backend application projects. Guided the team through design, implementation, testing, deployment, and production support.</li>
+              <li>Designed and implemented APIs and backend services for enterprise applications.</li>
+              <li>Coordinated directly with Japanese counterparts to clarify requirements, report progress, and resolve technical issues.</li>
+              <li>Investigated production incidents and application defects, identified their causes, and implemented fixes.</li>
+              <li>Customized a Manufacturing Execution System for a new client. Added user and material data entry, material calculations, and tracking from supplier receipt through preparation for production.</li>
+              <li>Maintained the Receivable-Remittance System and resolved defects in its PDF printing functionality.</li>
+              <li>Investigated and resolved end-user support tickets for the Oil and Gas Voucher and Point System, including issues with voucher and points transactions.</li>
+              <li>Prepared technical specifications, user manuals, system documentation, and project reports.</li>
+              <li>Supported project managers with invoice processing and follow-up on quotations and related project documentation.</li>
             </ul>
-            <p class="stack"><strong>Technologies</strong> Java, Java EE, Spring Boot, .NET/C#, Oracle, PostgreSQL, JavaScript, HTML, CSS, JUnit, SVN</p>
+            <p class="stack"><strong>Technologies</strong> Java, Java EE (JSF, Servlets, JPA), Spring Boot, .NET/C#, Oracle, PostgreSQL, JavaScript, HTML, CSS, Junit, SVN</p>
           </div>
         </li>
         <li class="job">
@@ -473,7 +512,8 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
             <h3>Software Developer</h3>
             <p class="employer">VisibilityOne</p>
             <ul>
-              <li>Built features and supporting tools for desktop monitoring applications. Tested and debugged changes, reviewed code, and supported cloud deployments.</li>
+              <li>Maintained and enhanced desktop monitoring applications, implementing features and supporting tools based on technical and business requirements.</li>
+              <li>Tested and debugged application changes, performed peer code reviews, and supported deployments to cloud environments.</li>
               <li>Documented assigned modules and system processes.</li>
             </ul>
             <p class="stack"><strong>Technologies</strong> .NET/C#, Qt, C++, batch scripts, Git, GitHub, Jira</p>
@@ -485,7 +525,9 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
             <h3>Full Stack Developer (Freelance)</h3>
             <p class="employer">ATeam Business Software Solutions Co.</p>
             <ul>
-              <li>Implemented features for an existing CRM application from technical specifications, contributed to planning and design, and performed functional testing and troubleshooting.</li>
+              <li>Developed features for an existing customer relationship management (CRM) application using Laravel, Livewire, Tailwind CSS, Alpine.js, and MySQL.</li>
+              <li>Implemented requirements from the project consultant’s technical specifications and contributed to project planning and system design.</li>
+              <li>Troubleshot defects and performed functional testing on new and modified features.</li>
             </ul>
             <p class="stack"><strong>Technologies</strong> PHP, Laravel, Livewire, Tailwind CSS, Alpine.js, MySQL, PHPUnit, Git, GitHub</p>
           </div>
@@ -496,11 +538,14 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
             <h3>Software Engineer I to III</h3>
             <p class="employer">KYOCERA Document Solutions Development Philippines Inc.</p>
             <ul>
-              <li>Developed and maintained enterprise web and desktop software, including account and workflow systems, maintenance tools, HyPAS applications, and printer driver projects.</li>
-              <li>Maintained software transferred from the Japan development team, wrote specifications, and worked with QA and international colleagues to diagnose defects.</li>
-              <li>Led small development teams, managed technical deliverables, trained junior engineers, and contributed to internal R&amp;D. Served as a patent liaison for approximately one year.</li>
+              <li>Designed, developed, and maintained custom web, desktop, and enterprise applications. Worked across requirements analysis, planning, estimation, development, testing, deployment, and maintenance.</li>
+              <li>Contributed to the Account and Workflow System, Workflow Designer System, maintenance support tools, HyPAS applications, and Windows and mobile printer driver projects.</li>
+              <li>Maintained and enhanced software transferred from the Japan development team. Participated in technical discussions with international counterparts about the applications.</li>
+              <li>Led small development teams, managed assigned projects and technical deliverables, and trained junior engineers on existing applications and development practices.</li>
+              <li>Wrote software specifications and project documentation. Worked with QA to investigate defects and helped diagnose and resolve complex application issues.</li>
+              <li>Contributed ideas to internal research and development and served as a patent liaison for approximately one year.</li>
             </ul>
-            <p class="stack"><strong>Technologies</strong> Java, Java EE, Apache Struts, .NET/C#, WinAPI/C++, JavaScript, jQuery, AngularJS, Bootstrap, HTML, CSS, MySQL, SVN, Perforce, Git, Bitbucket, Jira</p>
+            <p class="stack"><strong>Technologies</strong> Java, Java EE (JSP, Servlets), Apache Struts, .NET/C#, WinAPI/C++, JavaScript, jQuery, AngularJS, Bootstrap, HTML, CSS, MySQL, SVN, Perforce, Git, Bitbucket, Jira</p>
           </div>
         </li>
       </ol>
@@ -544,19 +589,17 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
       <div class="credentials">
         <article class="credential">
           <h3>ITIL 4 Foundation Certification</h3>
-          <!-- To add a certificate thumbnail, upload the image beside index.html, then uncomment and update this example.
-          <a class="certificate-image" href="itil-4-certificate.webp">
-            <img src="itil-4-certificate.webp" alt="View full ITIL 4 Foundation certificate" width="240" loading="lazy">
-          </a>
-          -->
+          <a class="certificate-link" href="itil-4-foundation.png" aria-label="View certificate for ITIL 4 Foundation Certification">View certificate</a>
         </article>
         <article class="credential">
           <h3>ITEE Fundamental Information Technology Engineer Examination (FE)</h3>
           <p>Level 2 · ITPEC</p>
+          <a class="certificate-link" href="itee-fe-level-2.png" aria-label="View certificate for ITEE Fundamental Information Technology Engineer Examination (FE)">View certificate</a>
         </article>
         <article class="credential">
           <h3>Philippine IT General Certification Examination (Phil-IT GCE)</h3>
           <p>CEDF-IT</p>
+          <a class="certificate-link" href="phil-it-gce.png" aria-label="View certificate for Philippine IT General Certification Examination (Phil-IT GCE)">View certificate</a>
         </article>
         <article class="credential patent">
           <p class="eyebrow">U.S. Patent · US11178211B2</p>
@@ -596,6 +639,21 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
       <a class="back-top" href="#top">Back to top <span class="arrow up" aria-hidden="true"></span></a>
     </div>
   </footer>
+  <dialog class="certificate-dialog" id="certificate-dialog" aria-labelledby="certificate-title">
+    <div class="certificate-panel">
+      <div class="certificate-header">
+        <h2 id="certificate-title"></h2>
+        <form method="dialog">
+          <button type="submit" class="button" autofocus>Close</button>
+        </form>
+      </div>
+      <div class="certificate-preview">
+        <p class="certificate-status" id="certificate-status" role="status"></p>
+        <img id="certificate-image" alt="" hidden>
+      </div>
+    </div>
+  </dialog>
+
   <script>
     const printButton = document.getElementById("print-resume");
     printButton.hidden = false;
@@ -605,6 +663,38 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     const showAvatar = () => { avatar.parentElement.hidden = false; };
     avatar.addEventListener("load", showAvatar, { once: true });
     if (avatar.complete && avatar.naturalWidth > 0) showAvatar();
+
+    const certificateDialog = document.getElementById("certificate-dialog");
+    const certificateTitle = document.getElementById("certificate-title");
+    const certificateImage = document.getElementById("certificate-image");
+    const certificateStatus = document.getElementById("certificate-status");
+
+    if (typeof certificateDialog.showModal === "function") {
+      certificateImage.addEventListener("load", () => {
+        certificateImage.hidden = false;
+        certificateStatus.textContent = "";
+      });
+      certificateImage.addEventListener("error", () => {
+        certificateImage.hidden = true;
+        certificateStatus.textContent = "The certificate image is currently unavailable.";
+      });
+
+      document.querySelectorAll(".certificate-link").forEach((link) => {
+        link.setAttribute("aria-haspopup", "dialog");
+        link.addEventListener("click", (event) => {
+          if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+
+          event.preventDefault();
+          const title = link.closest(".credential").querySelector("h3").textContent;
+          certificateTitle.textContent = title;
+          certificateImage.alt = "Certificate for " + title;
+          certificateImage.hidden = true;
+          certificateStatus.textContent = "Loading certificate…";
+          certificateImage.src = link.href;
+          certificateDialog.showModal();
+        });
+      });
+    }
   </script>
 </body>
 </html>
