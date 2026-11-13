@@ -272,6 +272,10 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     .profile-card::before, .profile-card::after { position: absolute; z-index: -1; content: ""; pointer-events: none; border: 1px solid #d9acbd35; border-radius: 50%; width: 15rem; height: 15rem; right: -7.5rem; top: -6.9rem; }
     .profile-card::after { right: -6.3rem; top: -8rem; }
     .profile-card .eyebrow { color: #edc7d3; }
+    .profile-card-top { display: flex; align-items: center; justify-content: space-between; gap: .85rem; }
+    .profile-avatar { flex: 0 0 auto; width: clamp(4rem, 8.6vw, 7rem); aspect-ratio: 1; overflow: hidden; border: 2px solid #edc7d3; border-radius: 50%; background: #f2e4d9; }
+    .profile-avatar img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .profile-avatar[hidden] { display: none; }
     .profile-card .stat { display: block; margin: .55rem 0 .08rem; color: #fff5ef; font: 400 clamp(4.6rem, 6.8vw, 6.5rem)/.9 var(--serif); }
     .profile-card .stat-label { color: #f3e2e8; font-size: .97rem; }
     .profile-card dl { margin-top: 1.35rem; }
@@ -411,8 +415,15 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         </div>
       </div>
       <aside class="profile-card" aria-label="Career highlights">
-        <p class="eyebrow">Career at a glance</p>
-        <p><span class="stat">12+</span><span class="stat-label">years in software engineering</span></p>
+        <div class="profile-card-top">
+          <div>
+            <p class="eyebrow">Career at a glance</p>
+            <p><span class="stat">12+</span><span class="stat-label">years in software engineering</span></p>
+          </div>
+          <div class="profile-avatar" hidden>
+            <img src="avatar.webp" alt="Portrait of Nechelle Navarro" width="512" height="512">
+          </div>
+        </div>
         <dl>
           <div><dt>Core expertise</dt><dd>Java, Spring Boot &amp; full-stack development</dd></div>
           <div><dt>International experience</dt><dd>Nearly two years onsite in Tokyo</dd></div>
@@ -589,6 +600,11 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     const printButton = document.getElementById("print-resume");
     printButton.hidden = false;
     printButton.addEventListener("click", () => window.print());
+
+    const avatar = document.querySelector(".profile-avatar img");
+    const showAvatar = () => { avatar.parentElement.hidden = false; };
+    avatar.addEventListener("load", showAvatar, { once: true });
+    if (avatar.complete && avatar.naturalWidth > 0) showAvatar();
   </script>
 </body>
 </html>
