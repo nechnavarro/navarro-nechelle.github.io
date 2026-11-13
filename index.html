@@ -319,9 +319,9 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     .certificate-dialog {
       width: fit-content;
       min-width: min(24rem, calc(100% - 2rem));
-      max-width: min(38rem, calc(100% - 2rem));
-      max-height: 82vh;
-      max-height: 82dvh;
+      max-width: min(58rem, calc(100% - 2rem));
+      max-height: 92vh;
+      max-height: 92dvh;
       padding: 0;
       overflow: auto;
       border: 1px solid var(--line);
@@ -340,8 +340,8 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
       width: auto;
       height: auto;
       max-width: 100%;
-      max-height: min(26rem, 56vh);
-      max-height: min(26rem, 56dvh);
+      max-height: min(44rem, 78vh);
+      max-height: min(44rem, 78dvh);
       margin-inline: auto;
       border: 1px solid var(--line);
       border-radius: .2rem;
@@ -387,6 +387,8 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
       .job-meta p + p { margin-top: 0; }
       .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 1rem; }
       .credentials { grid-template-columns: 1fr; }
+      .certificate-dialog { max-width: min(58rem, calc(100% - 1rem)); }
+      .certificate-panel { padding: .75rem; }
       .footer-inner { flex-direction: column; align-items: flex-start; }
     }
     @media (prefers-reduced-motion: reduce) {
@@ -477,7 +479,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
           <div class="job-meta"><p class="eyebrow"><time datetime="2024-11">Nov 2024</time> – <time datetime="2026-08">Aug 2026</time></p><p>Tokyo, Japan</p></div>
           <div>
             <h3>Chief Systems Engineer</h3>
-            <p class="employer">GC Co., Ltd. · Client assignment with NTT DATA Group Corporation</p>
+            <p class="employer">GC Co., Ltd.  |  Client assignment with NTT DATA Group Corporation</p>
             <ul>
               <li>Developed and maintained Java and Spring Boot web applications for healthcare services. Implemented enhancements based on client requirements.</li>
               <li>Designed and implemented APIs and backend services for enterprise applications.</li>
