@@ -317,9 +317,11 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     .credential a { display: inline-block; margin-top: .5rem; font-size: .88rem; font-weight: 700; }
     .credential .certificate-link { margin-top: .65rem; }
     .certificate-dialog {
-      width: min(52rem, calc(100% - 2rem));
-      max-height: calc(100% - 2rem);
-      max-height: calc(100dvh - 2rem);
+      width: fit-content;
+      min-width: min(24rem, calc(100% - 2rem));
+      max-width: min(38rem, calc(100% - 2rem));
+      max-height: 82vh;
+      max-height: 82dvh;
       padding: 0;
       overflow: auto;
       border: 1px solid var(--line);
@@ -336,8 +338,10 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     .certificate-preview img {
       display: block;
       width: auto;
-      max-height: 72vh;
-      max-height: 72dvh;
+      height: auto;
+      max-width: 100%;
+      max-height: min(26rem, 56vh);
+      max-height: min(26rem, 56dvh);
       margin-inline: auto;
       border: 1px solid var(--line);
       border-radius: .2rem;
@@ -350,6 +354,8 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     .education { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
     .education h2 { margin-bottom: .95rem; font-size: clamp(2.5rem, 4vw, 3.45rem); }
     .education p { margin-top: .3rem; color: var(--muted); }
+    .education .scholarship { margin-top: .75rem; color: var(--accent); font-weight: 700; }
+    .education .certificate-link { margin-top: .4rem; }
     .language-list { padding-left: 0; list-style: none; }
     .language-list li { color: var(--muted); }
     .language-list strong { color: var(--ink); }
@@ -439,7 +445,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <div class="actions">
           <a class="button primary" href="mailto:navarronech@gmail.com">Email me <span class="arrow" aria-hidden="true"></span></a>
           <a class="button" href="https://www.linkedin.com/in/nechelle-navarro-209674120/">LinkedIn <span class="arrow" aria-hidden="true"></span></a>
-          <!--<a class="button" href="https://github.com/nechnavarro/navarro-nechelle.github.io">GitHub repository <span class="arrow" aria-hidden="true"></span></a>-->
+          <!-- <a class="button" href="https://github.com/nechnavarro/navarro-nechelle.github.io">GitHub repository <span class="arrow" aria-hidden="true"></span></a> -->
           <button class="button" type="button" id="print-resume" hidden>Print / Save PDF</button>
         </div>
       </div>
@@ -599,7 +605,6 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <article class="credential">
           <h3>Philippine IT General Certification Examination (Phil-IT GCE)</h3>
           <p>CEDF-IT</p>
-          <a class="certificate-link" href="phil-it-gce.png" aria-label="View certificate for Philippine IT General Certification Examination (Phil-IT GCE)">View certificate</a>
         </article>
         <article class="credential patent">
           <p class="eyebrow">U.S. Patent · US11178211B2</p>
@@ -615,6 +620,8 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <h2 id="education-title">Education</h2>
         <h3>Bachelor of Science in Information Technology</h3>
         <p>Cebu Institute of Technology – University · 2010–2014</p>
+        <p class="scholarship">DOST Scholar</p>
+        <a class="button certificate-link" href="dost-scholar-proof.png" data-preview-title="DOST Scholarship Proof" aria-label="View DOST scholarship proof">View scholarship proof</a>
       </section>
       <section aria-labelledby="languages-title">
         <h2 id="languages-title">Languages</h2>
@@ -676,7 +683,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
       });
       certificateImage.addEventListener("error", () => {
         certificateImage.hidden = true;
-        certificateStatus.textContent = "The certificate image is currently unavailable.";
+        certificateStatus.textContent = "The image is currently unavailable.";
       });
 
       document.querySelectorAll(".certificate-link").forEach((link) => {
@@ -685,11 +692,11 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
           if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
 
           event.preventDefault();
-          const title = link.closest(".credential").querySelector("h3").textContent;
+          const title = link.dataset.previewTitle ?? link.closest(".credential").querySelector("h3").textContent;
           certificateTitle.textContent = title;
-          certificateImage.alt = "Certificate for " + title;
+          certificateImage.alt = link.dataset.previewTitle ?? "Certificate for " + title;
           certificateImage.hidden = true;
-          certificateStatus.textContent = "Loading certificate…";
+          certificateStatus.textContent = "Loading image…";
           certificateImage.src = link.href;
           certificateDialog.showModal();
         });
