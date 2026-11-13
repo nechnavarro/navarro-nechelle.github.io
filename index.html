@@ -259,7 +259,6 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     .intro { max-width: 35rem; margin-top: .8rem; color: var(--muted); font-size: 1.02rem; }
     .actions { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 1.55rem; }
     .button { display: inline-flex; align-items: center; justify-content: center; gap: .6rem; min-height: 2.8rem; padding: .55rem 1.04rem; border: 1px solid #b89da6; border-radius: .28rem; background: transparent; color: var(--accent); font-size: .86rem; font-weight: 700; text-decoration: none; cursor: pointer; }
-    .button[hidden] { display: none; }
     .arrow { display: inline-block; position: relative; width: .72em; height: .72em; margin-left: .18em; vertical-align: -.03em; }
     .arrow::before, .arrow::after { position: absolute; content: ""; }
     .arrow::before { top: .05em; right: .05em; width: .52em; height: .52em; border-top: 1px solid; border-right: 1px solid; }
@@ -275,7 +274,6 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     .profile-card-top { display: flex; align-items: center; justify-content: space-between; gap: .85rem; }
     .profile-avatar { flex: 0 0 auto; width: clamp(4rem, 8.6vw, 7rem); aspect-ratio: 1; overflow: hidden; border: 2px solid #edc7d3; border-radius: 50%; background: #f2e4d9; }
     .profile-avatar img { display: block; width: 100%; height: 100%; object-fit: cover; }
-    .profile-avatar[hidden] { display: none; }
     .profile-card .stat { display: block; margin: .55rem 0 .08rem; color: #fff5ef; font: 400 clamp(4.6rem, 6.8vw, 6.5rem)/.9 var(--serif); }
     .profile-card .stat-label { color: #f3e2e8; font-size: .97rem; }
     .profile-card dl { margin-top: 1.35rem; }
@@ -448,7 +446,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
           <a class="button primary" href="mailto:navarronech@gmail.com">Email me <span class="arrow" aria-hidden="true"></span></a>
           <a class="button" href="https://www.linkedin.com/in/nechelle-navarro-209674120/">LinkedIn <span class="arrow" aria-hidden="true"></span></a>
           <!-- <a class="button" href="https://github.com/nechnavarro/navarro-nechelle.github.io">GitHub repository <span class="arrow" aria-hidden="true"></span></a> -->
-          <!--<button class="button" type="button" id="print-resume" hidden>Print / Save PDF</button> -->
+          <!-- <button class="button" type="button" onclick="window.print()">Print / Save PDF</button> -->
         </div>
       </div>
       <aside class="profile-card" aria-label="Career highlights">
@@ -457,7 +455,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
             <p class="eyebrow">Career at a glance</p>
             <p><span class="stat">12+</span><span class="stat-label">years in software engineering</span></p>
           </div>
-          <div class="profile-avatar" >
+          <div class="profile-avatar">
             <img src="avatar.webp" alt="Portrait of Nechelle Navarro" width="512" height="512">
           </div>
         </div>
@@ -664,15 +662,6 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
   </dialog>
 
   <script>
-    const printButton = document.getElementById("print-resume");
-    printButton.hidden = false;
-    printButton.addEventListener("click", () => window.print());
-
-    const avatar = document.querySelector(".profile-avatar img");
-    const showAvatar = () => { avatar.parentElement.hidden = false; };
-    avatar.addEventListener("load", showAvatar, { once: true });
-    if (avatar.complete && avatar.naturalWidth > 0) showAvatar();
-
     const certificateDialog = document.getElementById("certificate-dialog");
     const certificateTitle = document.getElementById("certificate-title");
     const certificateImage = document.getElementById("certificate-image");
